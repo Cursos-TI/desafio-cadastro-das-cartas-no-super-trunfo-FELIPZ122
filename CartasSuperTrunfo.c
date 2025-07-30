@@ -1,99 +1,66 @@
-
-// Inclui a biblioteca padrão de entrada e saída (Standard Input/Output), 
-// que é necessária para usar funções como printf() para exibir texto na tela 
-// e scanf() para ler dados inseridos pelo usuário.
+// Inclui a biblioteca padrão de entrada e saída (Standard Input/Output)
 #include <stdio.h>
 
 // A função main() é o ponto de entrada obrigatório de todo programa em C.
-// O 'int' antes de 'main' indica que a função retornará um número inteiro ao sistema operacional
-// para informar se o programa executou com sucesso ou não.
 int main() {
     // --- Declaração de Variáveis para a Carta 1 ---
-    
-    // Declara três arrays de caracteres (strings) para armazenar textos.
-    // 'char[50]' reserva espaço na memória para 50 caracteres.
-    // Em C, uma string é um array de caracteres terminado por um caractere especial nulo ('\0'),
-    // então, na prática, pode-se armazenar um texto de até 49 caracteres.
     char Estado[50], CodigoDaCarta[50], NomeDaCidade[50];
     
-    // Declara duas variáveis do tipo 'int' (inteiro) para armazenar números inteiros,
-    // como a população e a quantidade de pontos turísticos.
-    int Populacao, PontoTuristico;
-    
-    // Declara duas variáveis do tipo 'float' para armazenar números com casas decimais 
-    // (ponto flutuante), como a área e o Produto Interno Bruto (PIB).
+    // ALTERADO: PontoTuristico faz mais sentido como 'int'. Apenas Populacao precisa ser 'unsigned long int'.
+    unsigned long int Populacao;
+    int PontoTuristico; 
     float Area, Pib;
 
-    // --- Declaração de Variáveis para a Carta 2 (a lógica é a mesma da Carta 1) ---
-    // Declaração das mesmas variáveis, mas com o sufixo '2' para diferenciar
-    // e armazenar os dados da segunda carta.
+    // --- Declaração de Variáveis para a Carta 2 ---
     char Estado2[50], CodigoDaCarta2[50], NomeDaCidade2[50];
-    int Populacao2, PontoTuristico2;
+    unsigned long int Populacao2;
+    int PontoTuristico2;
     float Area2, Pib2;
 
     // Declaração das variáveis que irão guardar os resultados dos cálculos.
     float DensidadePopulacional, DensidadePopulacional2;
-    float PIBperCapita , PIBperCapita2; 
+    float PIBperCapita, PIBperCapita2; 
+    
+    // ALTERADO: Renomeado para clareza e para refletir o cálculo correto.
+    float DensidadeInvertida, DensidadeInvertida2;
+    float Scarta1, Scarta2;
 
-    // A função printf() é usada para imprimir texto no console.
-    // O '\n' é um caractere especial que significa "nova linha", movendo o cursor para a linha de baixo.
     printf("Olá, usuário! Neste programa, você deverá inserir alguns dados para o jogo de cartas Super Trufo. As informações referentes às suas Cartas 1 e 2 serão solicitadas a seguir: \n");
-    printf("Carta 1: \n");
+    printf("\nCarta 1: \n");
 
     // --- Leitura dos Dados da Carta 1 ---
-    
-    // Pede ao usuário para digitar o estado.
     printf("Digite seu Estado: \n");
-    // A função scanf() lê a entrada do teclado.
-    // O especificador de formato "%s" indica que scanf() deve ler uma string (texto).
-    // Para arrays (como 'Estado'), não é necessário usar o '&' antes do nome da variável.
-    // ATENÇÃO: A leitura com "%s" para no primeiro espaço em branco.
     scanf("%s", Estado);
 
-    // Pede ao usuário para digitar o código da carta.
     printf("Digite o Codigo da sua Carta: \n");
-    // Lê e armazena o código da carta.
     scanf("%s", CodigoDaCarta);
 
-    // Pede ao usuário para digitar o nome da cidade.
     printf("Digite o Nome da sua Cidade: \n");
-    // Lê e armazena o nome da cidade.
     scanf("%s", NomeDaCidade);
 
-    // Pede ao usuário para digitar a população.
     printf("Digite o tamanho da sua população: \n");
-    // O especificador de formato "%d" indica a leitura de um número inteiro (decimal).
-    // O '&' é o operador "endereço de". Ele é necessário aqui para que scanf() saiba
-    // em qual local da memória deve armazenar o número digitado pelo usuário.
-    scanf("%d", &Populacao);
+    // O especificador %lu é para 'unsigned long int'.
+    scanf("%lu", &Populacao);
 
-    // Pede ao usuário para digitar a área.
     printf("Digite o tamanho da sua Área: \n");
-    // O especificador de formato "%f" indica a leitura de um número de ponto flutuante (float).
-    // O '&' também é necessário para passar o endereço de memória da variável 'Area'.
     scanf("%f", &Area);
 
-    // Pede ao usuário para digitar o PIB.
-    printf("Digite o valor do seu PIB: \n");
-    // Lê e armazena o valor do PIB na variável 'Pib'.
+    printf("Digite o valor do seu PIB (em bilhões): \n");
     scanf("%f", &Pib);
     
-    // Pede ao usuário para digitar o número de pontos turísticos.
     printf("Digite o Número de Pontos Turísticos: \n");
-    // Lê e armazena o número de pontos turísticos na variável 'PontoTuristico'.
+    // O especificador %d é para 'int'.
     scanf("%d", &PontoTuristico);
 
     // --- Cálculos para a Carta 1 ---
-    // Calcula a densidade populacional. (float) garante que a divisão seja de números decimais.
-    DensidadePopulacional = (float) Populacao / Area; 
-    // Calcula o PIB per capita.
-    PIBperCapita = (float) Pib / Populacao;
+    DensidadePopulacional = (float)Populacao / Area; 
+    PIBperCapita = (float)Pib / Populacao;
+    
+    DensidadeInvertida = 1.0f / DensidadePopulacional;
 
-
-    // Imprime um título para a segunda seção de entrada de dados, com uma linha em branco antes para separar.
     printf("\nCarta 2: \n");
 
-    // --- Leitura dos Dados da Carta 2 (processo idêntico ao da Carta 1) ---
+    // --- Leitura dos Dados da Carta 2 ---
     printf("Digite seu Estado: \n");
     scanf("%s", Estado2);
 
@@ -104,50 +71,63 @@ int main() {
     scanf("%s", NomeDaCidade2);
 
     printf("Digite o tamanho da sua população: \n");
-    scanf("%d", &Populacao2);
+    scanf("%lu", &Populacao2);
 
     printf("Digite o tamanho da sua Área: \n");
     scanf("%f", &Area2);
 
-    printf("Digite o valor do seu PIB: \n");
+    printf("Digite o valor do seu PIB (em bilhões): \n");
     scanf("%f", &Pib2);
 
     printf("Digite o Número de Pontos Turísticos: \n");
     scanf("%d", &PontoTuristico2);
 
     // --- Cálculos para a Carta 2 ---
-    DensidadePopulacional2 = (float) Populacao2 / Area2; 
-    PIBperCapita2 = (float) Pib2 / Populacao2;
+    DensidadePopulacional2 = (float)Populacao2 / Area2; 
+    PIBperCapita2 = (float)Pib2 / Populacao2;
+    
 
-    // Imprime um cabeçalho para a seção de exibição dos dados.
+    DensidadeInvertida2 = 1.0f / DensidadePopulacional2;
+
+    // --- Exibição dos Dados Finais ---
     printf("\n--- DADOS FINAIS ---\n"); 
 
-    // --- Exibição dos Dados da Carta 1 ---
-    
-    // Imprime o título da carta.
     printf("\nCarta 1: \n");
-    // Usa um único printf() para exibir múltiplos valores.
-    // Os especificadores de formato (%s, %d) são substituídos, na ordem,
-    // pelos valores das variáveis listadas após a string (Estado, CodigoDaCarta, etc.).
-    printf(" Estado: %s\n Codigo: %s\n Cidade: %s\n População: %d\n", Estado, CodigoDaCarta, NomeDaCidade, Populacao);
-    // Exibe os dados restantes da Carta 1.
-    // O especificador %f é usado para os valores do tipo float. O "%.2f" formata o número para ter apenas 2 casas decimais.
+    printf(" Estado: %s\n Codigo: %s\n Cidade: %s\n População: %lu\n", Estado, CodigoDaCarta, NomeDaCidade, Populacao);
     printf(" Área: %.2f km²\n PIB: %.2f bilhões\n Pontos Turísticos: %d\n", Area, Pib, PontoTuristico);
-    // Mostra o resultado do cálculo da densidade populacional.
-    printf("Sua Densidade Populacional: %.2f hab/km²\n ", DensidadePopulacional );
-    // Mostra o resultado do cálculo do PIB per capita.
-    printf("PIB per Capita: %.2f reais²\n " , PIBperCapita );
+    printf(" Densidade Populacional: %.2f hab/km²\n", DensidadePopulacional);
+    printf(" PIB per Capita: %.2f\n", PIBperCapita);
 
-    // --- Exibição dos Dados da Carta 2 ---
     printf("\nCarta 2: \n");
-    // Exibe todos os dados coletados para a Carta 2.
-    printf(" Estado: %s\n Codigo: %s\n Cidade: %s\n População: %d\n", Estado2, CodigoDaCarta2, NomeDaCidade2, Populacao2);
+    printf(" Estado: %s\n Codigo: %s\n Cidade: %s\n População: %lu\n", Estado2, CodigoDaCarta2, NomeDaCidade2, Populacao2);
     printf(" Área: %.2f km²\n PIB: %.2f bilhões\n Pontos Turísticos: %d\n", Area2, Pib2, PontoTuristico2);
-    printf("Sua Densidade Populacional: %.2f hab/km²\n ", DensidadePopulacional2 );
-    printf("PIB per Capita: %.2f reais²\n ", PIBperCapita2 );
+    printf(" Densidade Populacional: %.2f hab/km²\n", DensidadePopulacional2);
+    printf(" PIB per Capita: %.2f\n", PIBperCapita2);
 
-    // O comando 'return 0;' finaliza a função main() e retorna o valor 0.
-    // Para o sistema operacional, um retorno 0 significa que o programa foi executado
-    // com sucesso e terminou sem erros.
+    // --- Cálculo do Super Poder ---
+    // O Super Poder é a soma de todos os atributos, usando a densidade INVERTIDA.
+    Scarta1 = (float)Populacao + Area + Pib + (float)PontoTuristico + DensidadeInvertida + PIBperCapita;
+    Scarta2 = (float)Populacao2 + Area2 + Pib2 + (float)PontoTuristico2 + DensidadeInvertida2 + PIBperCapita2;
+
+    // --- Comparação Atributo a Atributo ---
+    printf("\n--- RESULTADOS DAS COMPARAÇÕES ---\n");
+
+    // Para estes atributos, MAIOR vence.
+    printf("População: Vencedora: %s\n", Populacao > Populacao2 ? "Carta 1" : "Carta 2");
+    printf("Área: Vencedora: %s\n", Area > Area2 ? "Carta 1" : "Carta 2");
+    printf("PIB: Vencedora: %s\n", Pib > Pib2 ? "Carta 1" : "Carta 2");
+    printf("Pontos Turísticos: Vencedora: %s\n", PontoTuristico > PontoTuristico2 ? "Carta 1" : "Carta 2");
+    printf("PIB per Capita: Vencedora: %s\n", PIBperCapita > PIBperCapita2 ? "Carta 1" : "Carta 2");
+    
+    // CORREÇÃO: Para Densidade Populacional, MENOR vence.
+    printf("Densidade Populacional: Vencedora: %s\n", DensidadePopulacional < DensidadePopulacional2 ? "Carta 1" : "Carta 2");
+
+    // --- Resultados do Super Poder ---
+    printf("\nSuper Poder da Carta 1: %.2f\n", Scarta1);
+    printf("Super Poder da Carta 2: %.2f\n", Scarta2);
+    
+    // CORREÇÃO: Para o Super Poder, MAIOR vence.
+    printf("Super Poder (Geral): Vencedora: %s\n", Scarta1 > Scarta2 ? "Carta 1" : "Carta 2");
+
     return 0;
 }
