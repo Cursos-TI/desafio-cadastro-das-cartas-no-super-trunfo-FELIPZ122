@@ -6,7 +6,6 @@ int main() {
     // --- Declaração de Variáveis para a Carta 1 ---
     char Estado[50], CodigoDaCarta[50], NomeDaCidade[50];
     
-    // ALTERADO: PontoTuristico faz mais sentido como 'int'. Apenas Populacao precisa ser 'unsigned long int'.
     unsigned long int Populacao;
     int PontoTuristico; 
     float Area, Pib;
@@ -21,7 +20,6 @@ int main() {
     float DensidadePopulacional, DensidadePopulacional2;
     float PIBperCapita, PIBperCapita2; 
     
-    // ALTERADO: Renomeado para clareza e para refletir o cálculo correto.
     float DensidadeInvertida, DensidadeInvertida2;
     float Scarta1, Scarta2;
 
