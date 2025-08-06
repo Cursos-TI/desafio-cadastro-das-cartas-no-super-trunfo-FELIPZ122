@@ -6,6 +6,7 @@ int main() {
     // --- Declaração de Variáveis para a Carta 1 ---
     char Estado[50], CodigoDaCarta[50], NomeDaCidade[50];
     
+    // ALTERADO: PontoTuristico faz mais sentido como 'int'. Apenas Populacao precisa ser 'unsigned long int'.
     unsigned long int Populacao;
     int PontoTuristico; 
     float Area, Pib;
@@ -20,6 +21,7 @@ int main() {
     float DensidadePopulacional, DensidadePopulacional2;
     float PIBperCapita, PIBperCapita2; 
     
+    // Declaração das variáveis que irão guardar os resultados dos cálculos.
     float DensidadeInvertida, DensidadeInvertida2;
     float Scarta1, Scarta2;
 
@@ -56,7 +58,7 @@ int main() {
     
     DensidadeInvertida = 1.0f / DensidadePopulacional;
 
-    printf("\nCarta 2: \n");
+    printf("\nCarta 2: \n");    
 
     // --- Leitura dos Dados da Carta 2 ---
     printf("Digite seu Estado: \n");
@@ -117,14 +119,14 @@ int main() {
     printf("Pontos Turísticos: Vencedora: %s\n", PontoTuristico > PontoTuristico2 ? "Carta 1" : "Carta 2");
     printf("PIB per Capita: Vencedora: %s\n", PIBperCapita > PIBperCapita2 ? "Carta 1" : "Carta 2");
     
-    // CORREÇÃO: Para Densidade Populacional, MENOR vence.
+    // Para Densidade Populacional, MENOR vence.
     printf("Densidade Populacional: Vencedora: %s\n", DensidadePopulacional < DensidadePopulacional2 ? "Carta 1" : "Carta 2");
 
     // --- Resultados do Super Poder ---
-    printf("\nSuper Poder da Carta 1: %.2f\n", Scarta1);
+    printf("Super Poder da Carta 1: %.2f\n", Scarta1);
     printf("Super Poder da Carta 2: %.2f\n", Scarta2);
     
-    // CORREÇÃO: Para o Super Poder, MAIOR vence.
+    // Para o Super Poder, MAIOR vence.
     printf("Super Poder (Geral): Vencedora: %s\n", Scarta1 > Scarta2 ? "Carta 1" : "Carta 2");
 
     return 0;
